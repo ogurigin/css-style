@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>输入框</title>
+	<link rel="stylesheet" href="">
+	<style>
+		html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt,
+		b, u, i, 
+		dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed, 
+		figure, figcaption, footer, header, hgroup, 
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video, input{
+		    margin: 0;
+		    padding: 0;
+		    border: 0;
+		    vertical-align: baseline;
+		    font-family: 'Microsoft YaHei';
+		}
+		.uinput {
+			position: relative;
+			width:500px;
+			margin: 80px auto;
+			display: -webkit-flex !important;
+			display: flex !important;
+			position:relative;
+			flex-flow: column-reverse;
+		}
+		label{
+			width:100%;
+			color:#666;
+			-webkit-transform:translate(0, 20px) scale(1);
+			-webkit-transition: all .2s ease-in;
+		}
+		input{
+			background-color: transparent;
+			height: 35px;
+			width: 100%;
+			border:none;
+			outline: none;
+		}
+		span{
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width:100%;
+			border-bottom:1px solid #ccc;
+			height:1px;
+		}
+		span:after{
+			content:"";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width:100%;
+			background:#ccc;
+			height:2px;
+			-webkit-transform: scale(0);
+			-webkit-transition: all .2s ease-out;
+		}
+		input:focus + span:after{
+			-webkit-transform: scale(1);
+		}
+		input:focus ~ label{
+			-webkit-transform:translate(-20px,0 ) scale(.9);
+			-webkit-transition: all .2s ease-out;
+		}
+	</style>
+</head>
+<body>
+	<div class="uinput">
+		<input class="" placeholder="" id="card">
+		<span></span>
+		<label for="card" class="info">身份证</label>
+	</div>
+</body>
+</html>
