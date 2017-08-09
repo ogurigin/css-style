@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>斜角标样式</title>
+	<link rel="stylesheet" href="">
+	<style type="">
+		.corner-div{
+			width:300px;
+			height:70px;
+			border:2px solid #ff7428;
+			position: relative;
+			border-radius: 5px;
+			margin:50px auto 0;
+			text-align: center;
+			/*line-height: 70px;*/
+
+		}
+		.corner:before{
+		    font-size:12px;
+		    content:"贱卖";
+		    white-space:nowrap;
+		    color:#fff;
+		    position:absolute;
+		    -webkit-transform: rotateZ(45deg);
+		    transform: rotateZ(45deg);
+		    top:6px;
+		    right:0px;
+		}
+		.corner:after{
+		    content:"";
+		    position:absolute;
+		    top:0px;
+		    right:0px;
+		    z-index: -1;
+		    border-bottom:40px solid transparent; 
+		    border-right:40px solid #ff7428;
+		}
+
+	</style>
+</head>
+<body>
+	<div class='corner-div corner'>巴拉巴拉一堆内容</div>
+</body>
+</html>

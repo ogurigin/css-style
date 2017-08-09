@@ -14,7 +14,23 @@ demo地址 ： https://ogurigin.github.io/css-style/input/input-type1
 
 1.可旋转的列表icon
 
-	效果图 ： 
-	![](./img/demo1.gif)
+效果图 ： 
 
-	demo地址 ： https://ogurigin.github.io/css-style/tranition/list-Transiton.html
+![](./img/demo1.gif)
+
+demo地址 ： https://ogurigin.github.io/css-style/tranition/list-Transiton.html
+
+
+
+### 静态样式
+
+就是一些简单的静态css样式
+
+1.带边框斜角标
+
+效果图
+
+![效果图](./img/corner.png)
+
+demo地址：https://ogurigin.github.io/css-style/all/corner.html
+

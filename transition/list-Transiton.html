@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>纯css列表图标的动画效果</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div class="list">
+		<div class="list-inner"></div>
+	</div>
+</body>
+<style type="">
+	.list{
+		position: relative;
+	    width: 20px;
+	    height: 24px;
+	    cursor: pointer;
+	}
+	.list-inner{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 20px;
+		height: 2px;
+		padding: 8px 0;
+		/*确确保背景颜色只在内容区域显示*/
+		background-clip: content-box;
+		background-color: #C4C0C0;
+		/*transform: translate(-50%, -50%);*/
+	}
+	.list-inner:after,.list-inner:before{
+		content: '';
+		position: absolute;
+		/*top: 50%;*/
+		left: 0;
+		width: 100%;
+		height: 2px;
+		/*确确保背景颜色只在内容区域显示*/
+		/*background-clip: content-box;*/
+		background-color: #C4C0C0;
+		transition: transform 0.3s, background-color 0.3s;
+	}
+	.list-inner:before {
+	  top: 0;
+	}
+	.list-inner:after {
+	  bottom: 0;
+	}
+	/*以上代码：拼出icon*/
+	.list:hover .list-inner{
+		background-color: transparent;
+	}
+	.list:hover .list-inner:after{
+		/*8为padding值，可修改*/
+		transform: translateY(-8px) rotate(-45deg);
+	}
+	.list:hover .list-inner:before{
+		transform: translateY(8px) rotate(45deg);
+	}
+</style>
+</html>

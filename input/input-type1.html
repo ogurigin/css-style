@@ -66,6 +66,13 @@
 			-webkit-transform: scale(0);
 			-webkit-transition: all .2s ease-out;
 		}
+		._input_field + span:after{
+			-webkit-transform: scale(1);
+		}
+		._input_field ~ label{
+			-webkit-transform:translate(-20px,0 ) scale(.9);
+			-webkit-transition: all .2s ease-out;
+		}
 		input:focus + span:after{
 			-webkit-transform: scale(1);
 		}
@@ -79,7 +86,15 @@
 	<div class="uinput">
 		<input class="" placeholder="" id="card">
 		<span></span>
-		<label for="card" class="info">身份证</label>
+		<label for="card" class="">身份证</label>
 	</div>
 </body>
+<script type="">
+	(function(){
+		var inputBox =  document.getElementById("card");
+		if(inputBox.value){
+			inputBox.setAttribute('class','_input_field'); 
+		}
+	})()
+</script>
 </html>
