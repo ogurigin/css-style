@@ -15,7 +15,6 @@ demo地址 ： https://ogurigin.github.io/css-style/input/input-type1
 1.可旋转的列表icon
 
 效果图 ： 
-<<<<<<< HEAD
 
 ![](./img/demo1.gif)
 
@@ -34,10 +33,3 @@ demo地址 ： https://ogurigin.github.io/css-style/tranition/list-Transiton.htm
 ![效果图](./img/corner.png)
 
 demo地址：https://ogurigin.github.io/css-style/all/corner.html
-
-=======
-
-![](./img/demo1.gif)
-
-demo地址 ： https://ogurigin.github.io/css-style/tranition/list-Transiton.html
->>>>>>> origin/master
