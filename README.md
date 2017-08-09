@@ -18,7 +18,7 @@ demo地址 ： https://ogurigin.github.io/css-style/input/input-type1
 
 ![](./img/demo1.gif)
 
-demo地址 ： https://ogurigin.github.io/css-style/tranition/list-Transiton.html
+demo地址 ： https://ogurigin.github.io/css-style/transition/list-Transiton.html
 
 
 
