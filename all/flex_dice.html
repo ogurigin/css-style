@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style type="">
+		body{
+			background-color: #2d2d2d;
+		}
+		.dice{
+			width:100px;
+			height:100px;
+			background: #e7e7e7;
+			border-radius: 10px;
+			margin:100px auto;
+			box-shadow: inset 0 5px white, 
+					    inset 0 -5px #bbb,
+					    inset 5px 0 #d7d7d7, 
+					    inset -5px 0 #d7d7d7;
+		}
+		.spot{
+			width:24px;
+			height:24px;
+			border-radius: 50%;
+			background-color: #333;
+			margin:5px;
+			box-shadow: inset 0 3px #111,inset 0 -3px #555;
+		}
+		.first-spot{
+			width:35px;
+			height:35px;
+			border-radius: 50%;
+			background-color: #ac1213;
+			margin:5px;
+			box-shadow: inset 0 3px #9d0304,inset 0 -3px #bb2122;
+		}
+
+		.first-dice{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.second-dice{
+			display: flex;
+			justify-content:space-between;
+		}
+		.second-dice .spot:last-child{
+			align-items: center;
+		}
+		.loading {
+	  position: absolute;
+	  z-index: 10000;
+	  top: 0;
+	  left: 0;
+	  height: 100%;
+	  width: 100%;
+	  background: url(...) center center;
+	}
+	</style>
+</head>
+<body>
+	<div class="first-dice dice">
+		<div class="first-spot"></div>
+	</div>
+	<div class="second-dice dice">
+		<div class="spot"></div>
+		<div class="spot"></div>
+	</div>
+	<div class="loading"></div>
+</body>
+</html>
