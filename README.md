@@ -51,3 +51,29 @@ demo地址：https://ogurigin.github.io/css-style/all/radiusHeart.html
 ![效果图](./img/triangleBorder.png) 
 
 demo地址：https://ogurigin.github.io/css-style/all/triangleBorder.html
+
+
+
+4. 纯css搞定顶部滚动条
+
+   ​	demo地址：https://ogurigin.github.io/css-style/all/top-scrollbar.html  
+
+   
+
+5. 各种居中，包括固定宽高  以及不固定宽高
+
+   ​	demo地址：https://ogurigin.github.io/css-style/all/centerVertically.html
+
+   
+
+   
+
+   ​	
+
+   
+
+   
+
+   
+
+   

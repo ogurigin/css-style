@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>各种垂直居中</title>
+</head>
+<body>
+    <h2>垂直居中的方法</h2>
+    <h3>仅居中元素定宽高适用</h3>
+    <ul>
+        <li>absolute d+ 负margin</li>
+        <li>absolute + margin auto</li>
+        <li>absolute + calc</li>
+    </ul>
+    <h3>居中元素不定宽高</h3>
+    <ul>
+        <li>absolute + transform</li>
+        <li>lineheight</li>
+        <li>writing-mode</li>
+        <li>table</li>
+        <li>css-table</li>
+        <li>flex</li>
+        <li>grid</li>
+    </ul>
+
+    <h3>1.absolute d+ 负margin    </h3>
+    <div class="box box1">
+        <div class="box1-content size col">居中</div>
+    </div>
+
+    <h3>2.absolute + margin auto   </h3>
+    <div class="box box2">
+        <div class="box2-content size col">居中</div>
+    </div>
+
+    <h3>3.absolute + calc   </h3>
+    <div class="box box3">
+        <div class="box3-content size col">居中</div>
+    </div>
+
+    <h3>1.absolute + transform   </h3>
+    <div class="box box4">
+        <div class="box4-content col">居中</div>
+    </div>
+
+    <h3>2.lineheight  </h3>
+    <div class="box box5">
+        <div class="box5-content col">居中</div>
+    </div>
+
+    <h3>3.writing-mode </h3>
+    <div class="box box6">
+        <div class="box-inner">
+            <div class="box6-content col">居中</div>
+        </div>
+    </div>
+
+    <h3>4.css-table </h3>
+    <div class="box box7">
+        <div class="box7-content col">居中</div>
+    </div>
+
+    <h3>5.flex </h3>
+    <div class="box box8">
+        <div class="box8-content col">居中</div>
+    </div>
+
+    <h3>6.grid </h3>
+    <div class="box box9">
+        <div class="box9-content col">居中</div>
+    </div>
+</body>
+<style>
+    /* 公共属性 */
+    body{
+        padding:20px 200px;
+    }
+    .box{
+        width:300px;
+        height: 300px;
+        border:1px solid #ddd;
+    }
+    .size{
+        width:100px;
+        height:100px;
+    }
+    .col{
+        color:#fff;
+        background-color:#ff7428;
+    }
+
+
+    .box1{
+        position: relative;
+    }
+    .box1-content{
+        position:absolute;
+        top:50%;
+        left:50%;
+        margin-top:-50px;
+        margin-left:-50px;
+    }
+
+    .box2{
+        position: relative;
+    }
+    .box2-content{
+        position: absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        margin:auto;
+    }
+
+    .box3{
+        position: relative;
+    }
+    .box3-content{
+        position: absolute;
+        left:calc(50% - 50px);
+        top:calc(50% - 50px);
+    }
+
+    .box4{
+        position: relative;
+    }
+    .box4-content{
+        padding:30px;
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .box5{
+        line-height: 300px;
+        text-align: center;
+    }
+    .box5-content{
+        font-size: 16px;
+        display: inline-block;
+        line-height: initial;
+        vertical-align: middle;
+        text-align: left;
+    }
+
+    .box6{
+        writing-mode: vertical-lr;
+        text-align: center;
+    }
+    .box-inner{
+        writing-mode: horizontal-tb;
+        display: inline-block;
+        text-align: center;
+        width:100%;
+    }
+    .box6-content{
+        display: inline-block;
+        margin:auto;
+        text-align: left;
+    }
+
+    .box7{
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+    .box7-content{
+        font-size: 16px;
+        display: inline-block;
+        line-height: initial;
+        vertical-align: middle;
+        text-align: left;
+    }
+
+    .box8{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .box9{
+        display: grid;
+    }
+    .box9-content{
+        align-self: center;
+        justify-self: center;
+    }
+</style>
+</html>
