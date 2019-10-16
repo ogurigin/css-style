@@ -1,5 +1,5 @@
 # css-style
-各种值得收藏的样式
+各种值得收藏的样式111111
 只是收藏自己喜欢的样式，看到喜欢的自己写一写，然后放上来
 
 ### 输入框样式
@@ -63,6 +63,11 @@ demo地址：https://ogurigin.github.io/css-style/all/triangleBorder.html
 5. 各种居中，包括固定宽高  以及不固定宽高
 
    ​	demo地址：https://ogurigin.github.io/css-style/all/centerVertically.html
+
+
+6. 纯css实现每个单词首字母大写
+
+   ​	demo地址：https://ogurigin.github.io/css-style/all/text-transform.html
 
    
 
