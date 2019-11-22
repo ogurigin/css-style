@@ -67,9 +67,15 @@ demo地址：https://ogurigin.github.io/css-style/all/triangleBorder.html
 
 6. 纯css实现每个单词首字母大写
 
-   ​	demo地址：https://ogurigin.github.io/css-style/all/text-transform.html
+   demo地址：https://ogurigin.github.io/css-style/all/text-transform.html
 
    
+
+7. 旋转美少女 ---魔方轮播
+
+   demo地址：https://ogurigin.github.io/css-style/all/cuber.html
+
+   ​	
 
    
 
