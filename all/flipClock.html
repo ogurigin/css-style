@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>翻转时钟</title>
+</head>
+<body>
+    <!-- 根据效果，需要前后两个内容 -->
+    <div class="clock" id="clock">
+        <div class="flip">
+            <div class="digital front"></div>
+            <div class="digital back"></div>
+        </div>
+        <div class="flip">
+            <div class="digital front"></div>
+            <div class="digital back"></div>
+        </div>
+        <em>:</em>
+        <div class="flip">
+            <div class="digital front"></div>
+            <div class="digital back"></div>
+        </div>
+        <div class="flip">
+            <div class="digital front"></div>
+            <div class="digital back"></div>
+        </div>
+        <em>:</em>
+        <div class="flip">
+            <div class="digital front"></div>
+            <div class="digital back"></div>
+        </div>
+        <div class="flip">
+            <div class="digital front"></div>
+            <div class="digital back"></div>
+        </div>
+    </div>
+</body>
+<script>
+    // 构建Flipper类
+// 将每个翻牌封装成类，这样在应对多个翻牌的时候，可以方便的通过new Flipper()去独立控制每个翻牌对象。
+    function Flipper(config){
+        // 设置默认的config
+        this.config = {
+            // 时钟模块的节点
+            node:null,
+            // 初始的前排文字
+            frontText:'number0',
+            // 初始的后排文字
+            backText:'number1',
+            // // 翻转动画时间（毫秒，与翻转动画CSS 设置的animation-duration时间要一致）
+            // ???那为什么要传入？？
+            // duration: 600,
+        }
+        // 节点原来的class 方便日后增加修改
+        this.nodeClass={
+            flip:'flip down',//暂时没有向上翻 用不到，所以先写死 方便日后修改
+            front:'digital front',
+            back:'digital back'
+        }
+
+        // / 覆盖默认配置
+        Object.assign(this.config,config);
+        // 定位前后两个节点
+        this.frontNode = this.config.node.querySelector('.front');
+        this.backNode = this.config.node.querySelector('.back');
+        // 判断是否在翻拍的期间 （防止动画未完成就进入下一次翻牌）
+        this.isFlipping = false;
+        this._init();
+    }
+
+    Flipper.prototype={
+        constructor :Flipper,
+        _init(){
+            // 初始化字符
+            this._setFrontText(this.config.frontText);
+            this._setBackText(this.config.backText);
+        },
+        _setFrontText(className){
+            this.frontNode.setAttribute('class',`${this.nodeClass.front} ${className}`);
+            // this.frontNode.setAttribute('class', this.nodeClass.front + ' ' + className)
+
+        },
+        _setBackText(className){
+            this.backNode.setAttribute('class',`${this.nodeClass.back} ${className}`);
+        },
+        _flip(front, back){
+            if(this.isFlipping){
+                return false;
+            } else{
+                this.isFlipping = true;
+            }
+
+            // 添加文字
+            this._setFrontText(front);
+            this._setBackText(back);
+              // 添加执行动画的class，执行翻转动画
+            this.config.node.setAttribute('class',  this.nodeClass.flip+' go');
+            //根据设置的动画时间，在动画结束后，还原class并更新前牌文字
+            setTimeout(() => {
+                // 还原class
+                this.config.node.setAttribute('class', this.nodeClass.flip)
+                // 设置翻转状态为false
+                this.isFlipping = false
+                // 将前牌文字设置为当前新的数字，后牌因为被前牌挡住了，就不用设置了。
+                this._setFrontText(back)
+            },600)
+        }
+    }
+
+    // 时间格式化函数的实现
+    // 需求是通过输入日期时间格式要求，输出对应的字符串
+    // yyyy-mm-dd hh:ii:ss 输出：2019-06-02 08:30:37
+    // yy-m-d h:i:s 输出：19-6-2 8:30:37
+    function formatDate(date, dateFormat) {
+        /* 单独格式化年份，根据y的字符数量输出年份
+        * 例如：yyyy => 2019
+                yy => 19
+                y => 9
+        */
+        // + 表示至少一个或多个
+        if(/(y+)/.test(dateFormat)){
+            // RegExp.$1 表示匹配的第一段字符
+            dateFormat = dateFormat.replace(RegExp.$1,(date.getFullYear()+'').substr(4-RegExp.$1.length));
+        }
+        // 格式化月、日、时、分、秒
+        let o = {
+            'm+': date.getMonth() + 1,
+            'd+': date.getDate(),
+            'h+': date.getHours(),
+            'i+': date.getMinutes(),
+            's+': date.getSeconds()
+        };
+        for(let k in o){
+            let str = o[k] + '';
+            if(new RegExp(`(${k})`).test(dateFormat)){
+                let iLength = RegExp.$1.length;
+                dateFormat = dateFormat.replace(RegExp.$1,iLength===1?str:str.padStart(iLength,'0'));
+            }
+        }
+        return dateFormat;
+    }
+
+
+    // 开始执行
+    let flipObjs = [];
+    function init(){
+        const clock = document.getElementById('clock');
+        const flips = document.querySelectorAll('.flip');
+
+        // 获取当前的时间
+        let now = new Date();
+        let nowTimeStr = formatDate(now,'hhiiss');
+        // 格式化下一秒的时间，后面的dom要用
+        let nextTimeStr = formatDate(new Date(now.getTime() + 1000),'hhiiss');
+        // 便利各个方块，并初始化
+        for (let i = 0; i < flips.length; i++) {
+            flipObjs.push(new Flipper({
+                node:flips[i],
+                frontText:'number'+nowTimeStr[i],
+                backText:'number'+nextTimeStr[i],
+            }))
+        }
+    }
+    init();
+    // 定时翻动
+    function a(){
+         // 获取当前的时间
+        let now = new Date();
+        let nowTimeStr = formatDate(now,'hhiiss');
+        // 格式化下一秒的时间，后面的dom要用
+        let nextTimeStr = formatDate(new Date(now.getTime() + 1000),'hhiiss');
+        for (let i = 0; i < flipObjs.length; i++) {
+            // 如果前后数字没有变化，则直接跳过，不翻牌
+           if(nowTimeStr[i] === nextTimeStr[i]){
+            continue;   
+           }
+            // 传递前后牌的数字，进行向下翻牌动画
+            flipObjs[i]._flip('number' + nowTimeStr[i], 'number' + nextTimeStr[i])
+        }
+    }
+    // a();
+    setInterval(function(){
+         // 获取当前的时间
+        let now = new Date();
+        let nowTimeStr = formatDate(now,'hhiiss');
+        // 格式化下一秒的时间，后面的dom要用
+        let nextTimeStr = formatDate(new Date(now.getTime() + 1000),'hhiiss');
+        for (let i = 0; i < flipObjs.length; i++) {
+            // 如果前后数字没有变化，则直接跳过，不翻牌
+           if(nowTimeStr[i] === nextTimeStr[i]){
+            continue;   
+           }
+            // 传递前后牌的数字，进行向下翻牌动画
+            flipObjs[i]._flip('number' + nowTimeStr[i], 'number' + nextTimeStr[i])
+        }
+    },1000)
+</script>
+<style>
+    .clock{
+        text-align: center;
+    }
+    .clock em{
+        display: inline-block;
+        line-height: 200px;
+        font-size: 132px;
+        font-style: normal;
+        vertical-align: top;
+    }
+    .flip{
+        display: inline-block;
+        position: relative;
+        width:120px;
+        height:200px;
+        background-color: black;
+        border-radius: 10px;
+        box-shadow: 0 0 6px rgba(0, 0, 0, .5);
+        text-align: center;
+        font-family: "Helvetica Neue";
+        color:#fff;
+        font-size: 132px;
+        margin-left:15px;
+    }
+    /* 整体分为前后两个部分 */
+    /* 前后每个部分又分为上下两块 */
+    .flip .digital::before,
+    .flip .digital::after{
+        position: absolute;
+        left:0;
+        right:0;
+        overflow: hidden;
+        background: #000;
+        /* 保证边框不影响高度 */
+        box-sizing: border-box; 
+
+    }
+    .flip .digital::before{
+        top:0;
+        bottom: 50%;
+        border-radius: 10px 10px 0 0;
+        /* 中间的水平分割线 */
+        border-bottom: 1px solid #666;
+        line-height: 200px;
+
+    }
+    .flip .digital::after{
+        top:50%;
+        bottom: 0;
+        border-radius: 0 0 10px 10px;
+        /* line-height设置文字的基线 */
+        /* 具体 可以查看看https://www.cnblogs.com/zhangyachen/p/8035661.html */
+        line-height: 0;
+
+    }
+    /* 根据翻转的效果  设置层级  一共三层*/
+    .flip.down .front::before{
+        z-index: 3;
+    }
+    .flip.down .back::after{
+        z-index: 2;
+        /* transform-origin是元素旋转的基本点。
+        transform-origin: 50% 0%;表示将旋转基本点设置在横轴的中点，纵轴的顶点位置 */
+        /* perspective？？？？、？？？ */
+        transform-origin: 50% 0%;
+        transform: perspective(280px) rotateX(180deg);
+    }
+    .flip.down .front::after,
+    .flip.down .back::before{
+        z-index: 1;
+    }
+
+    /*向上翻   向上翻的不咋好看  暂时不想写了*/
+    /* .flip.up .front:after {
+        z-index: 3;
+    }
+
+    .flip.up .back:before {
+        z-index: 2;
+        transform-origin: 50% 100%;
+        transform: perspective(280px) rotateX(-180deg);
+    }
+
+    .flip.up .front:before,
+    .flip.up .back:after {
+        z-index: 1;
+    } */
+
+    /* 翻转动画！！！ */
+    .flip.down.go .front::before{
+        transform-origin: 50% 100%;
+        /* both 为animation-fill-mode 属性 具体可看https://www.runoob.com/cssref/css3-pr-animation-fill-mode.html */
+        /* 结束可试验下具体区别 */
+        animation: frontFlipDown  0.6s ease-in-out both;
+        /* box-shadow: 0 -2px 6px rgba(255, 255, 255, 0.3); */
+        /* transform: rotateX(-180deg); */
+        /* backface-visibility表示元素的背面是否可见   翻转90度后 背面露出 元素不可见！！ */
+        backface-visibility: hidden;
+    }
+    .flip.down.go .back::after{
+        transform-origin: 50% 0%;
+        animation: backFlipDown 0.6s ease-in-out both;
+    }
+    @keyframes frontFlipDown  {
+        0% {
+         transform: perspective(280px) rotateX(0deg);
+        }
+
+        100% {
+            transform: perspective(280px) rotateX(-180deg);
+        }
+    }
+    @keyframes backFlipDown  {
+        0% {
+         transform: perspective(280px) rotateX(180deg);
+        }
+
+        100% {
+            transform: perspective(280px) rotateX(0deg);
+        }
+    }
+
+    /* 显示数字 */
+    .flip .number0::before,
+    .flip .number0::after{
+        content: '0';
+    }
+    .flip .number1::before,
+    .flip .number1::after{
+        content: '1';
+    }
+    .flip .number2::before,
+    .flip .number2::after{
+        content: '2';
+    }
+    .flip .number3::before,
+    .flip .number3::after{
+        content: '3';
+    }
+    .flip .number4::before,
+    .flip .number4::after{
+        content: '4';
+    }
+    .flip .number5::before,
+    .flip .number5::after{
+        content: '5';
+    }
+    .flip .number6::before,
+    .flip .number6::after{
+        content: '6';
+    }
+    .flip .number7::before,
+    .flip .number7::after{
+        content: '7';
+    }
+    .flip .number8::before,
+    .flip .number8::after{
+        content: '8';
+    }
+    .flip .number9::before,
+    .flip .number9::after{
+        content: '9';
+    }
+</style>
+</html>
