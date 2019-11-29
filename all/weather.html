@@ -15,7 +15,8 @@
     <div class="weather rainy"></div>
     <!-- do you wanna build a snowman -->
     <div class="weather snowy"></div>
-
+    <!-- 试试看的闪电 -->
+    <div class="weather thunder"></div>
 </body>
 <style>
     /* 先是没个的背景 */
@@ -99,6 +100,7 @@
 
     .cloudy:before,
     .rainy:before ,
+    .thunder:before,
     .snowy:before {
         content: '';
         position: absolute;
@@ -119,7 +121,7 @@
             36px -30px 0px 10px #ccc,
             76px -20px 0px 5px #ccc,
             116px -4px 0px -5px #ccc;
-
+        z-index: 2;
     }
 
     /* 阴天云上下动 */
@@ -226,6 +228,38 @@
             90px -10px 0 0 #fff,
             90px  25px 0 0  #fff,
             90px  60px 0 0  rgba(255, 255, 255, 0);
+        }
+    }
+
+    /* 雷电的标志 */
+    .thunder:after{
+        content: '';
+        position: absolute;
+        top:70%;
+        left:50%;
+        background: #FFD700;
+        width:60px;
+        height:80px;
+        clip-path: polygon(
+            60% 0,
+            55% 40%,
+            100% 40%,
+            20% 100%,
+            35% 50%,
+            0 50%
+        );
+        animation: thunderAni 2s linear infinite;
+        z-index: 1;
+    }   
+    @keyframes thunderAni {
+        0%{
+            transform: translate(-50%,-50%) scale(1);
+        }
+        50%{
+            transform: translate(-50%,-40%)  scale(1.1);
+        }
+        100%{
+            transform: translate(-50%,-50%) scale(1);
         }
     }
 </style>
