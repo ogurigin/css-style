@@ -76,7 +76,9 @@ demo地址：https://ogurigin.github.io/css-style/all/triangleBorder.html
    demo地址：https://ogurigin.github.io/css-style/all/cuber.html
 
    ​	
+8. 翻转时钟  ---自己记得时不时看看代码！！
 
+   demo地址：https://ogurigin.github.io/css-style/all/flipClock.html	
    
 
    ​	
