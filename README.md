@@ -70,7 +70,6 @@ demo地址：https://ogurigin.github.io/css-style/all/triangleBorder.html
    demo地址：https://ogurigin.github.io/css-style/all/text-transform.html
 
    
-
 7. 旋转美少女 ---魔方轮播
 
    demo地址：https://ogurigin.github.io/css-style/all/cuber.html
@@ -80,7 +79,9 @@ demo地址：https://ogurigin.github.io/css-style/all/triangleBorder.html
 
    demo地址：https://ogurigin.github.io/css-style/all/flipClock.html	
    
+9. 天气小图标  ---看到喜欢的可以更新
 
+   demo地址：https://ogurigin.github.io/css-style/all/weather.html	
    ​	
 
    
