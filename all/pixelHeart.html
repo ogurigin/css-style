@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>像素小心心 可可爱爱</title>
+</head>
+<body>
+    <div class="colorHeart"></div>
+    <div class="heartbeat"></div>
+</body>
+<style>
+    .colorHeart{
+        display: inline-block;
+        position: relative;
+        /* margin-top:5%; */
+        top:-50px;
+        left:10%;
+        width:300px;
+        height:300px;
+        box-shadow: 0 0 6px #ccc;
+    }
+    .colorHeart::before{
+        content:'';
+        position: absolute;
+        top:25%;
+        left:45%;
+        width:30px;
+        height:30px;
+        background: #CA1200;
+         /* 利用box-shadow  画出其他的像素 */
+        box-shadow: 
+            /* 第一列 */
+            -90px 0 #740100,
+            -90px 30px #480000,
+            -90px  60px #451312,
+            /* 第二列 */
+            -60px -30px #8e1a19,
+            -60px 0 #8e0500,
+            -60px 30px #690100,
+            -60px  60px #5A0100,
+            -60px  90px #380000,
+             /* 第三列 */
+            -30px -30px #ac0500,
+            -30px 0 #8e1918,
+            -30px 30px #8e0f0b,
+            -30px  60px #840e0c,
+            -30px  90px #550100,
+            -30px  120px #3d0000,
+              /* 第四列   中间的*/
+            0 30px #8f1000,
+            0  60px #a51d1a,
+            0  90px #8e1a19,
+            0  120px #551415,
+            0  150px #340000,
+            /* 第五列*/
+            30px -30px #f73f0c,
+            30px 0 #f34f2b,
+            30px 30px #f84010,
+            30px  60px #ed2805,
+            30px  90px #a80700,
+            30px  120px #670100,
+             /* 第六列*/
+            60px -30px #fa5f27,
+            60px 0 #df351f,
+            60px 30px #f04200,
+            60px  60px #d9321e,
+            60px  90px #b90a00,
+             /* 第七列 */
+            90px 0 #f77c2a,
+            90px 30px #fa5724,
+            90px  60px #f44622;
+    }
+
+    /* 动态 */
+    .heartbeat{
+        display: inline-block;
+        position: relative;
+        margin-top:50px;
+        left:30%;
+        width:400px;
+        height:400px;
+        background: #840e0c;
+    }
+    .heartbeat::before{
+        content:'';
+        position: absolute;
+        top:35%;
+        left:45%;
+        width:30px;
+        height:30px;
+        background: #fff;
+        border-radius: 4px;
+          /* 利用box-shadow  画出其他的像素 */
+        box-shadow: 
+            /* 第一列 */
+            -128px -32px #fff,
+            -128px  0px #fff,
+            -128px 32px #fff,
+
+            /* 第二列 */
+            -96px  -64px #fff,
+            -96px -32px #fff,
+            -96px 0 #fff,
+            -96px 32px #fff,
+            -96px  64px #fff,
+                /* 第三列 */
+            -64px -64px #fff,
+            -64px -32px #fff,
+            -64px 0 #fff,
+            -64px 32px #fff,
+            -64px 64px #fff,
+            -64px 96px #fff,
+                /* 第四列 */
+            -32px -32px #fff,
+            -32px 0 #fff,
+            -32px 32px #fff,
+            -32px 64px #fff,
+            -32px 96px #fff,
+            -32px 128px #fff,
+            /* 第五列  中间的*/
+            0 32px #fff,
+            0 64px #fff,
+            0 96px #fff,
+            0 128px #fff,
+            0 160px #fff,
+            /*  第六列*/
+            32px -32px #fff,
+            32px 0 #fff,
+            32px 32px #fff,
+            32px 64px #fff,
+            32px 96px #fff,
+            32px 128px #fff,
+                /* 第七列*/
+            64px -64px #fff,
+            64px -32px #fff,
+            64px 0 #fff,
+            64px 32px #fff,
+            64px 64px #fff,
+            64px 96px #fff,
+                /* 第八列*/
+            96px -64px #fff,
+            96px -32px #fff,
+            96px 0 #fff,
+            96px 32px #fff,
+            96px 64px #fff,
+            /* 第九列 */
+            128px -32px #fff,
+            128px 0px #fff,
+            128px 32px #fff;
+
+        /* 往下掉的动画 */
+        /* 太烦了 不写了 */
+    }
+</style>
+</html>
